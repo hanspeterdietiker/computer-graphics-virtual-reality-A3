@@ -19,6 +19,11 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    # O token padrão do repositório é somente leitura; o envio do grafo de
+    # dependências (último step) precisa de escrita em "contents".
+    permissions:
+      contents: write
+
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -28,7 +33,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: ./mvnw -B package --file pom.xml
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
