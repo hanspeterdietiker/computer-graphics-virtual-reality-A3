@@ -47,24 +47,30 @@ Primitivas Geométricas: Algoritmos de geração de malhas esféricas para a ren
 
 ### 🚀 Como Executar
 
-Pré-requisitos
+#### Pré-requisitos
 
-Java Development Kit (JDK) instalado (versão X ou superior).
+- **JDK 17** (ou superior), com a variável `JAVA_HOME` apontando para ele.
+- **Maven não é necessário:** o projeto inclui o Maven Wrapper (`mvnw` / `mvnw.cmd`), que baixa o Maven 3.9.9 na primeira execução.
+- O JOGL 2.5.0 e os nativos de Windows, Linux e macOS são baixados automaticamente pelo Maven (repositório da JogAmp).
 
-Bibliotecas da API OpenGL para Java (como JOGL ou LWJGL) configuradas no classpath do projeto.
+#### Compilar, testar e executar
 
-Passos para compilação
+```bash
+# Windows (PowerShell / cmd)
+.\mvnw.cmd clean package     # compila, roda os testes e gera o JAR em target/
+.\mvnw.cmd test              # roda apenas os testes (JUnit 5)
+.\mvnw.cmd compile exec:java # executa a classe Main
 
-Clone este repositório:
+# Linux / macOS / Git Bash
+./mvnw clean package
+```
 
-git clone https://github.com/seu-usuario/sistema-solar-opengl.git
+#### Abrir na IDE
 
+- **IntelliJ IDEA:** *File → Open* e selecione a pasta do projeto (ou o `pom.xml`). O IntelliJ importa o projeto Maven automaticamente.
+- **Eclipse:** *File → Import → Maven → Existing Maven Projects* e selecione a pasta do projeto.
 
-Abra o projeto na sua IDE de preferência (Eclipse, IntelliJ IDEA, etc.).
-
-Certifique-se de que as bibliotecas do OpenGL estão importadas corretamente nas dependências do projeto.
-
-Execute o arquivo da classe principal (Main.java).
+Execute a classe `br.unifacs.a3.sistemasolar.Main`.
 
 ### 📊 Avaliação
 
