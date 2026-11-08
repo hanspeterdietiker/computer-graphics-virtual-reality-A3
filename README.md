@@ -70,7 +70,13 @@ Primitivas Geométricas: Algoritmos de geração de malhas esféricas para a ren
 - **IntelliJ IDEA:** *File → Open* e selecione a pasta do projeto (ou o `pom.xml`). O IntelliJ importa o projeto Maven automaticamente.
 - **Eclipse:** *File → Import → Maven → Existing Maven Projects* e selecione a pasta do projeto.
 
-Execute a classe `br.unifacs.a3.sistemasolar.Main`.
+Execute a classe `br.unifacs.a3.sistemasolar.Main` adicionando nas **VM options** da configuração de execução:
+
+```
+--add-opens java.desktop/sun.awt=ALL-UNNAMED
+```
+
+O JOGL acessa classes internas do AWT por reflexão, e o Java 17 bloqueia esse acesso por padrão. Pelo `mvnw exec:java` a flag já é aplicada automaticamente (arquivo `.mvn/jvm.config`).
 
 ### 📊 Avaliação
 
