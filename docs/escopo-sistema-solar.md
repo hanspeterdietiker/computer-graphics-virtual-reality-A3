@@ -208,12 +208,13 @@ Para `i ∈ [0, stacks]` e `j ∈ [0, slices]`:
 φ = π · i / stacks          (latitude, 0..π)
 θ = 2π · j / slices         (longitude, 0..2π)
 
-posição = ( sin φ · cos θ,  cos φ,  sin φ · sin θ )     (raio unitário; escala vem de S(r))
+posição = ( sin φ · cos θ,  cos φ,  −sin φ · sin θ )    (raio unitário; escala vem de S(r))
 normal  = posição
 uv      = ( j / slices,  i / stacks )
 ```
 
 - Total de vértices: `(stacks + 1) · (slices + 1)`; total de índices: `6 · stacks · slices`.
+- O sinal negativo em `z` faz a longitude (e o `u` da textura) crescer no mesmo sentido de `R_y(+θ)` (anti-horário visto de cima): a textura não fica espelhada e os índices `(a, b, c)`/`(c, b, d)` de cada quadrado saem anti-horários vistos de fora.
 - A malha é gerada **uma única vez** (`stacks = 48`, `slices = 64`), enviada para VBO e reutilizada para todos os corpos.
 
 ---
