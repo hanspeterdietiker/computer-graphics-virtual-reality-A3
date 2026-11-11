@@ -3,9 +3,12 @@ package br.unifacs.a3.sistemasolar;
 import br.unifacs.a3.sistemasolar.app.Window;
 import br.unifacs.a3.sistemasolar.exception.AwtInternalsNotOpenException;
 import com.jogamp.opengl.GLProfile;
+import java.util.Arrays;
 import javax.swing.SwingUtilities;
 
 public final class Main {
+
+    static final String WIREFRAME_FLAG = "--wireframe";
 
     private Main() {
     }
@@ -22,6 +25,7 @@ public final class Main {
             System.exit(1);
         }
 
-        SwingUtilities.invokeLater(() -> new Window().show());
+        boolean wireframe = Arrays.asList(args).contains(WIREFRAME_FLAG);
+        SwingUtilities.invokeLater(() -> new Window(wireframe).show());
     }
 }

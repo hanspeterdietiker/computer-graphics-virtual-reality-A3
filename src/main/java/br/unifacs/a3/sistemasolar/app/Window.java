@@ -28,13 +28,17 @@ public final class Window {
     private final AtomicBoolean closing = new AtomicBoolean(false);
 
     public Window() {
+        this(false);
+    }
+
+    public Window(boolean wireframe) {
         GLCapabilities capabilities = new GLCapabilities(GLProfile.get(GLProfile.GL2));
         capabilities.setDoubleBuffered(true);
         capabilities.setDepthBits(24);
 
         canvas = new GLCanvas(capabilities);
         canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        canvas.addGLEventListener(new Renderer());
+        canvas.addGLEventListener(new Renderer(wireframe));
 
         animator = new FPSAnimator(canvas, FPS, true);
 

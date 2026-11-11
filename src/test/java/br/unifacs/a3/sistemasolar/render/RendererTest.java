@@ -1,6 +1,8 @@
 package br.unifacs.a3.sistemasolar.render;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -65,5 +67,19 @@ class RendererTest {
     void aspectRatioDoesNotDivideByZeroWhenMinimized() {
         assertEquals(1280.0, Renderer.computeAspectRatio(1280, 0), TOLERANCE);
         assertEquals(1.0, Renderer.computeAspectRatio(0, 0), TOLERANCE);
+    }
+
+    @Test
+    void wireframeIsOffByDefault() {
+        assertFalse(new Renderer().isWireframe());
+        assertTrue(new Renderer(true).isWireframe());
+    }
+
+    @Test
+    void previewAngleAdvancesWithDeltaAndWrapsAround() {
+        assertEquals(Renderer.PREVIEW_SPIN_DEGREES_PER_SECOND,
+                Renderer.advancePreviewAngle(0.0, 1.0), TOLERANCE);
+        assertEquals(10.0, Renderer.advancePreviewAngle(350.0, 20.0 / Renderer.PREVIEW_SPIN_DEGREES_PER_SECOND),
+                1e-9);
     }
 }
